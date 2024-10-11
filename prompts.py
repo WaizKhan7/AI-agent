@@ -1,4 +1,6 @@
 #react prompt
+user_prompt = "what is the response time of learnwithhasan.com?"
+
 system_prompt = """
 
 You run in a loop of Thought, Action, PAUSE, Action_Response.
