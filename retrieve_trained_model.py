@@ -1,22 +1,22 @@
 # Install the client library and import necessary modules.
 import google.generativeai as genai
-
 import base64
 import copy
-import hashlib
-import io
 import json
-import os
+from content.model_content import content, generation_config_b64
+from configparser import ConfigParser
 
-
+config = ConfigParser()
+config.read("config.ini")
 
 def retrieve_trained_model():
 
     # Configure the client library by providing your API key.
-    genai.configure(api_key=os.environ["GEMINI_API_KEY"])
-    model = 'gemini-1.5-pro' # @param {isTemplate: true}
-    contents_b64 = '' # @param {isTemplate: true}
-    generation_config_b64 = '' # @param {isTemplate: true}
+    GEMINI_API_KEY = config.get('model', 'GEMINI_API_KEY')    
+
+    genai.configure(api_key=GEMINI_API_KEY)
+    model = config.get('model', 'MODEL_NAME') # @param {isTemplate: true}
+    contents_b64 = content # @param {isTemplate: true}
     safety_settings_b64 = "e30="  # @param {isTemplate: true}
 
     gais_contents = json.loads(base64.b64decode(contents_b64))
